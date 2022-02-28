@@ -47,7 +47,8 @@
         color: #fff !important;
       }
       .hg-theme-default .hg-button {
-        height: 80px !important;
+        height: 100px !important;
+        font-size: 30px !important;
       }
       .hg-theme-default .hg-button-tab,
       .hg-theme-default .hg-button-lock,
