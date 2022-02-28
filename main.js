@@ -159,6 +159,8 @@ function keyDownAction(event) {
     distance = distanceBetween(value, el.dataset.letter.toLowerCase());
     el.style.backgroundColor = colors[distance];
 
+    el.value = "";
+    value = "";
     keyboard.clearInput(event.target.id);
 
     if (distance > 8) {
@@ -201,6 +203,7 @@ if (!previousResults) {
     newInput.autocomplete = "off";
     newInput.className = "input";
     newInput.id = "input" + i;
+    newInput.inputmode = "none";
     document.getElementById("game").appendChild(newInput);
   }
 
