@@ -188,7 +188,6 @@ function onInputChange(event) {
 }
 
 function onChange(input) {
-  console.log(input);
   selectedInput.value = input;
   document.querySelector(selectedInput || "#input0").value = input;
   keyDownAction(selectedEvent);
@@ -223,7 +222,6 @@ if (!previousResults) {
     newInput.autocomplete = "off";
     newInput.className = "input";
     newInput.id = "input" + i;
-    console.log(getMobileOperatingSystem());
     if (
       getMobileOperatingSystem() === "iOS" ||
       getMobileOperatingSystem() === "Android"
