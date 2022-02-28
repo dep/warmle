@@ -194,6 +194,26 @@ function onChange(input) {
   keyDownAction(selectedEvent);
 }
 
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Windows Phone must come first because its UA also contains "Android"
+  if (/windows phone/i.test(userAgent)) {
+    return "Windows Phone";
+  }
+
+  if (/android/i.test(userAgent)) {
+    return "Android";
+  }
+
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return "iOS";
+  }
+
+  return "unknown";
+}
+
 if (!previousResults) {
   for (var i = 0; i < word.length; i++) {
     const newInput = document.createElement("input");
@@ -203,7 +223,13 @@ if (!previousResults) {
     newInput.autocomplete = "off";
     newInput.className = "input";
     newInput.id = "input" + i;
-    newInput.inputmode = "none";
+    console.log(getMobileOperatingSystem());
+    if (
+      getMobileOperatingSystem() === "iOS" ||
+      getMobileOperatingSystem() === "Android"
+    ) {
+      newInput.readOnly = true;
+    }
     document.getElementById("game").appendChild(newInput);
   }
 
