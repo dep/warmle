@@ -14,18 +14,6 @@ body > div {
 a {
   color: white;
 }
-input[type="text"] {
-  margin: 2px;
-  width: 75px;
-  height: 75px;
-  padding: 10px;
-  font-size: 30px;
-  text-transform: uppercase;
-  text-align: center;
-  border: 0;
-  outline: none;
-  transition: background 0.5s;
-}
 button {
   margin-top: 20px;
   background: green;
@@ -46,6 +34,24 @@ button {
 }
 #game {
   padding-top: 20%;
+  display: flex;
+  margin: 0 auto;
+  max-width: 900px;
+}
+#game input {
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0;
+}
+input[type="text"] {
+  margin: 2px;
+  height: 120px;
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+  border: 0;
+  outline: none;
+  transition: background 0.5s;
 }
 #stopwatch {
   font-size: 30px;
