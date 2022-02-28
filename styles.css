@@ -53,6 +53,14 @@ input[type="text"] {
   outline: none;
   transition: background 0.5s;
 }
+#results {
+  display: block;
+  background: #333;
+  padding: 20px;
+}
+#results p {
+  margin: 0 0 10px;
+}
 #stopwatch {
   font-size: 30px;
   transition: all ease 1s;

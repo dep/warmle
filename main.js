@@ -77,7 +77,7 @@ function showResults(type, incrementStreak) {
     }
 
     window.localStorage.setItem("streak", previousStreak);
-    document.getElementById("msg").innerHTML = `You Won!`;
+    document.getElementById("msg").innerHTML = `&#128516; You Won!`;
 
     if (previousStreak > 0) {
       document
@@ -87,7 +87,7 @@ function showResults(type, incrementStreak) {
   } else {
     window.localStorage.setItem("streak", 0);
     document.getElementById("msg").innerHTML =
-      "You died. The word was '" + word + "'.";
+      "&#128532; You died. The word was '" + word + "'.";
   }
 }
 
