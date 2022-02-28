@@ -14,10 +14,10 @@ let previousTime = window.localStorage.getItem("time" + todaysDate);
 let previousStreak = parseInt(window.localStorage.getItem("streak"));
 
 if (previousWin) {
-  showResults(previousWin);
+  showResults(previousWin, false);
 }
 
-function showResults(type) {
+function showResults(type, incrementStreak) {
   document.getElementById("stopwatch").style.display = "none";
 
   if (previousResults) {
@@ -33,7 +33,9 @@ function showResults(type) {
     let results = "";
     for (var i = 0; i < len; i++) {
       elems[i].disabled = true;
-      if (elems[i].value === elems[i].dataset.letter) {
+      if (
+        elems[i].value.toLowerCase() === elems[i].dataset.letter.toLowerCase()
+      ) {
         results += String.fromCodePoint(0x1f7e9);
       } else {
         results += String.fromCodePoint(0x2b1b);
@@ -54,8 +56,14 @@ function showResults(type) {
   }
 
   if (type === "win") {
-    console.log(previousStreak);
-    previousStreak++;
+    if (incrementStreak) {
+      if (previousStreak) {
+        previousStreak++;
+      } else {
+        previousStreak = 1;
+      }
+    }
+
     window.localStorage.setItem("streak", previousStreak);
     document.getElementById("msg").innerHTML = `You Won!`;
 
@@ -163,7 +171,7 @@ if (!previousResults) {
           el.blur();
           clearInterval(timer);
 
-          showResults("win");
+          showResults("win", true);
         }
       } else {
         distance = distanceBetween(value, el.dataset.letter.toLowerCase());
@@ -181,4 +189,3 @@ if (!previousResults) {
     });
   }
 }
-
