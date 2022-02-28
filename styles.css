@@ -75,9 +75,16 @@ button {
 .simple-keyboard {
   margin-top: 60px;
 }
+.simple-keyboard {
+  display: none;
+}
 @media (max-width: 968px) {
   .simple-keyboard {
     position: fixed;
     bottom: 0;
   }
+}
+.iOS .simple-keyboard,
+.Android .simple-keyboard {
+  display: block;
 }

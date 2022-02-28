@@ -277,3 +277,5 @@ if (!previousResults) {
     });
   }
 }
+
+document.body.classList = getMobileOperatingSystem();
