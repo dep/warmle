@@ -77,7 +77,7 @@
       <div id="game"></div>
       <h1 id="msg"></h1><br />
       <span id="results">
-        <p id="link" style="display: none">Play Warmle at https://warmle.xyz</p>
+        <p id="link" style="display: none">Play Warmle at https://warmle-game.com</p>
         <span id="stopwatch">
           0.00
         </span>
