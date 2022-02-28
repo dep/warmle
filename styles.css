@@ -22,7 +22,9 @@ input[type="text"] {
   font-size: 30px;
   text-transform: uppercase;
   text-align: center;
-  border: 1px solid #555;
+  border: 0;
+  outline: none;
+  transition: background 0.5s;
 }
 button {
   margin-top: 20px;
@@ -44,6 +46,10 @@ button {
 }
 #game {
   padding-top: 20%;
+}
+#stopwatch {
+  font-size: 30px;
+  transition: all ease 1s;
 }
 .hg-rows > .hg-row:first-child,
 .hg-rows > .hg-row:last-child {

@@ -99,18 +99,26 @@ function Timer() {
     i++;
     if (i > 100) {
       stopwatch.style.color = colors[14];
+      stopwatch.style.fontSize = "40px";
     }
     if (i > 200) {
       stopwatch.style.color = colors[12];
+      stopwatch.style.fontSize = "45px";
     }
     if (i > 300) {
       stopwatch.style.color = colors[10];
+      stopwatch.style.fontSize = "55px";
     }
     if (i > 400) {
       stopwatch.style.color = colors[9];
+      stopwatch.style.fontSize = "65px";
     }
     if (i > 425) {
       stopwatch.style.color = colors[8];
+      stopwatch.style.fontSize = "80px";
+    }
+    if (i > 450) {
+      stopwatch.style.fontSize = "90px";
     }
     if (i > 500) {
       clearInterval(timer);
