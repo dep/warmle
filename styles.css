@@ -81,8 +81,3 @@ button {
     bottom: 0;
   }
 }
-@media (min-width: 968px) {
-  .simple-keyboard {
-    display: none;
-  }
-}
