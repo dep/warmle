@@ -22,6 +22,7 @@ document.getElementById("instructionsLink").onclick = () => {
     document.getElementById("instructions").style.display == "none"
       ? "block"
       : "none";
+  document.getElementById("input0").focus();
 };
 
 document.getElementById("resultsButton").addEventListener("click", () => {
