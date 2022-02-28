@@ -17,6 +17,17 @@ if (previousWin) {
   showResults(previousWin, false);
 }
 
+document.getElementById("instructionsLink").onclick = () => {
+  document.getElementById("instructions").style.display =
+    document.getElementById("instructions").style.display == "none"
+      ? "block"
+      : "none";
+};
+
+document.getElementById("resultsButton").addEventListener("click", () => {
+  navigator.clipboard.writeText(document.getElementById("results").innerText);
+});
+
 function showResults(type, incrementStreak) {
   document.getElementById("stopwatch").style.display = "none";
 
