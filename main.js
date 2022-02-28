@@ -125,6 +125,75 @@ const distanceBetween = (a, b) => {
   return Math.abs(aIndex - bIndex);
 };
 
+const Keyboard = window.SimpleKeyboard.default;
+
+const keyboard = new Keyboard({
+  onChange: (input) => onChange(input),
+  excludeFromLayout: {
+    default: ["[", "]", "\\", ";", "'", ",", ".", "/", "`", "~", "=", "-"],
+  },
+});
+
+function keyDownAction(event) {
+  el = event.target;
+  value = el.value.toLowerCase();
+
+  if (!timer && value.match(/[a-z]/i)) {
+    Timer();
+  }
+
+  var nextInput = el.nextElementSibling;
+
+  if (value == el.dataset.letter.toLowerCase()) {
+    el.style.backgroundColor = "#32CD32";
+    el.style.color = "white";
+    if (nextInput) {
+      nextInput.focus();
+    } else {
+      el.blur();
+      clearInterval(timer);
+
+      showResults("win", true);
+    }
+  } else {
+    distance = distanceBetween(value, el.dataset.letter.toLowerCase());
+    el.style.backgroundColor = colors[distance];
+
+    el.value = "";
+    value = "";
+    keyboard.clearInput(event.target.id);
+
+    if (distance > 8) {
+      el.style.color = "black";
+    } else {
+      el.style.color = "white";
+    }
+  }
+}
+
+let selectedInput;
+let selectedEvent;
+
+function onInputFocus(event) {
+  selectedInput = `#${event.target.id}`;
+  selectedEvent = event;
+
+  keyboard.setOptions({
+    inputName: event.target.id,
+  });
+}
+
+function onInputChange(event) {
+  keyboard.setInput(event.target.value, event.target.id);
+}
+
+function onChange(input) {
+  console.log(input);
+  selectedInput.value = input;
+  document.querySelector(selectedInput || "#input0").value = input;
+  keyDownAction(selectedEvent);
+}
+
 if (!previousResults) {
   for (var i = 0; i < word.length; i++) {
     const newInput = document.createElement("input");
@@ -132,8 +201,15 @@ if (!previousResults) {
     newInput.dataset.letter = word.charAt(i);
     newInput.maxLength = 1;
     newInput.autocomplete = "off";
+    newInput.className = "input";
+    newInput.id = "input" + i;
     document.getElementById("game").appendChild(newInput);
   }
+
+  document.querySelectorAll(".input").forEach((input) => {
+    input.addEventListener("focus", onInputFocus);
+    input.addEventListener("input", onInputChange);
+  });
 
   document.getElementsByTagName("input")[0].focus();
 
@@ -152,40 +228,7 @@ if (!previousResults) {
 
     input.addEventListener("keyup", function (event) {
       disableTab(event);
-
-      el = event.target;
-
-      value = el.value.toLowerCase();
-      var nextInput = el.nextElementSibling;
-
-      if (!timer && value.match(/[a-z]/i)) {
-        Timer();
-      }
-
-      if (value == el.dataset.letter.toLowerCase()) {
-        el.style.backgroundColor = "#32CD32";
-        el.style.color = "white";
-        if (nextInput) {
-          nextInput.focus();
-        } else {
-          el.blur();
-          clearInterval(timer);
-
-          showResults("win", true);
-        }
-      } else {
-        distance = distanceBetween(value, el.dataset.letter.toLowerCase());
-        el.style.backgroundColor = colors[distance];
-
-        el.value = "";
-        value = "";
-
-        if (distance > 8) {
-          el.style.color = "black";
-        } else {
-          el.style.color = "white";
-        }
-      }
+      keyDownAction(event);
     });
   }
 }
