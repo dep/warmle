@@ -77,12 +77,8 @@ button {
 }
 .simple-keyboard {
   display: none;
-}
-@media (max-width: 968px) {
-  .simple-keyboard {
-    position: fixed;
-    bottom: 0;
-  }
+  position: fixed;
+  bottom: 0;
 }
 .iOS .simple-keyboard,
 .Android .simple-keyboard {
