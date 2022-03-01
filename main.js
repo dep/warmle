@@ -102,25 +102,46 @@ function Timer() {
       stopwatch.style.fontSize = "40px";
     }
     if (i > 200) {
-      stopwatch.style.color = colors[12];
+      stopwatch.style.color = colors[13];
       stopwatch.style.fontSize = "45px";
     }
     if (i > 300) {
-      stopwatch.style.color = colors[10];
+      stopwatch.style.color = colors[12];
       stopwatch.style.fontSize = "55px";
     }
     if (i > 400) {
-      stopwatch.style.color = colors[9];
+      stopwatch.style.color = colors[11];
       stopwatch.style.fontSize = "65px";
     }
     if (i > 425) {
-      stopwatch.style.color = colors[8];
+      stopwatch.style.color = colors[10];
       stopwatch.style.fontSize = "80px";
     }
     if (i > 450) {
+      stopwatch.style.color = colors[9];
       stopwatch.style.fontSize = "90px";
     }
+    if (i > 475) {
+      stopwatch.style.color = colors[8];
+      stopwatch.style.fontSize = "95px";
+    }
     if (i > 500) {
+      stopwatch.style.color = colors[7];
+      stopwatch.style.fontSize = "100px";
+    }
+    if (i > 525) {
+      stopwatch.style.color = colors[6];
+      stopwatch.style.fontSize = "105px";
+    }
+    if (i > 550) {
+      stopwatch.style.color = colors[5];
+      stopwatch.style.fontSize = "110px";
+    }
+    if (i > 575) {
+      stopwatch.style.color = colors[4];
+      stopwatch.style.fontSize = "115px";
+    }
+    if (i > 600) {
       clearInterval(timer);
       showResults();
     }

@@ -63,7 +63,7 @@ input[type="text"] {
 }
 #stopwatch {
   font-size: 30px;
-  transition: all ease 1s;
+  transition: all ease 1.5s;
 }
 .hg-rows > .hg-row:first-child,
 .hg-rows > .hg-row:last-child {
