@@ -21,14 +21,17 @@
       <span id="instructionsLink">how to play</span>
       <div id="game"></div>
       <h1 id="msg"></h1><br />
-      <span id="results">
+      <div id="results">
         <p id="link" style="display: none">Play Warmle at https://warmle-game.com</p>
         <span id="stopwatch">
           0.00
         </span>
-      </span>
+      </div>
       <br/>
       <button style="display: none" id="resultsButton">Copy Results</button><br /><br/>
+      <div id="copyright">
+        a <a href="https://dannypeck.com">dannypeck</a> project
+      </div>
       <div class="simple-keyboard"></div>
     </div>
 

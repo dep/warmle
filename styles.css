@@ -65,6 +65,10 @@ input[type="text"] {
   font-size: 30px;
   transition: all ease 1.5s;
 }
+#copyright {
+  font-size: 10px;
+  color: #888;
+}
 .hg-rows > .hg-row:first-child,
 .hg-rows > .hg-row:last-child {
   display: none;
