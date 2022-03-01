@@ -28,7 +28,7 @@
         </span>
       </div>
       <br/>
-      <button style="display: none" id="resultsButton">Copy Results</button><br /><br/>
+      <button style="display: none" id="resultsButton">Copy and share your results!</button><br /><br/>
       <div id="copyright">
         a <a href="https://dannypeck.com">dannypeck</a> project
       </div>
