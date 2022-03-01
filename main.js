@@ -79,6 +79,9 @@ function showResults(type, incrementStreak) {
     window.localStorage.setItem("streak", previousStreak);
     document.getElementById("msg").innerHTML = `&#128516; You Won!`;
 
+    document.getElementsByClassName("simple-keyboard")[0].style.display =
+      "none";
+
     if (previousStreak > 0) {
       document
         .getElementById("results")
