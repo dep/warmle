@@ -96,7 +96,6 @@ function showResults(type, incrementStreak) {
       "&#128532; You died. The word was '" + word + "'.";
   }
 }
-
 const stopwatch = document.getElementById("stopwatch");
 function Timer() {
   var i = 1;
@@ -149,7 +148,7 @@ function Timer() {
       stopwatch.style.color = colors[4];
       stopwatch.style.fontSize = "115px";
     }
-    if (i > 600) {
+    if (i > 600 || parseFloat(stopwatch.innerHTML) <= 0) {
       clearInterval(timer);
       showResults();
     }
