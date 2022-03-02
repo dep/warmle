@@ -14,8 +14,9 @@
     <div>
       <div id="instructions" style="display: none">
         <p>Each day provides a new word that you must guess starting with the first letter.</p>
-        <p>When you guess a letter, the counter begins. The "darkness" of the tile shows you how close you are alphabetically to the correct letter ("A" is very close to "B", so a very dark red, whereas "A" is very far from "Z", etc).
-        <p>When you guess the correct letter, the tile turns green and you are taken to the next letter.</p>
+        <p>When you guess a letter, the counter begins.</p>
+        <p>When you guess the correct letter, you gain 5 seconds and the tile turns green and you are taken to the next letter.</p>
+        <p>When you guess the wrong letter, you lose 1 second and must guess again. The "darkness" of the tile shows you how close you are alphabetically to the correct letter ("A" is very close to "B", so a very dark red, whereas "A" is very far from "Z", etc).</p>
         <p>You have 30 seconds to guess the word. Good luck!</p>
       </div>
       <span id="instructionsLink">how to play</span>
@@ -24,7 +25,7 @@
       <div id="results">
         <p id="link" style="display: none">Play Warmle at https://warmle-game.com</p>
         <span id="stopwatch">
-          0.00
+          30.00
         </span>
       </div>
       <br/>

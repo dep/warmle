@@ -3,6 +3,8 @@ const word = words[0];
 const todaysDate = new Date().toLocaleDateString("en-US");
 
 let timer = null;
+let timeLimit = 30;
+let time;
 
 window.localStorage.removeItem("win");
 window.localStorage.removeItem("results");
@@ -54,7 +56,9 @@ function showResults(type, incrementStreak) {
       }
     }
 
-    const time = document.getElementById("stopwatch").innerHTML;
+    time = parseFloat(
+      timeLimit - document.getElementById("stopwatch").innerHTML
+    ).toFixed(2);
 
     document
       .getElementById("results")
@@ -97,7 +101,9 @@ const stopwatch = document.getElementById("stopwatch");
 function Timer() {
   var i = 1;
   timer = setInterval(function () {
-    stopwatch.innerHTML = parseFloat(i / 20).toFixed(2);
+    stopwatch.innerHTML = parseFloat(
+      timeLimit - parseFloat(i / 20).toFixed(2)
+    ).toFixed(2);
     i++;
     if (i > 100) {
       stopwatch.style.color = colors[14];
@@ -192,6 +198,7 @@ function keyDownAction(event) {
     el.style.color = "white";
     if (nextInput) {
       nextInput.focus();
+      timeLimit = timeLimit + 5;
     } else {
       el.blur();
       clearInterval(timer);
@@ -201,6 +208,8 @@ function keyDownAction(event) {
   } else {
     distance = distanceBetween(value, el.dataset.letter.toLowerCase());
     el.style.backgroundColor = colors[distance];
+
+    timeLimit = timeLimit - 1;
 
     el.value = "";
     value = "";
@@ -283,12 +292,8 @@ if (!previousResults) {
 
   const inputs = document.getElementsByTagName("input");
 
-  var time = null;
-
   for (var x = 0; x < inputs.length; x++) {
     const input = inputs[x];
-    let distance;
-    let el;
 
     input.addEventListener("keydown", function (event) {
       disableTab(event);
