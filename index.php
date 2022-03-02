@@ -10,13 +10,13 @@
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <title>warmle!</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BX9RRN0X1E"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2P26DE6DZ9"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-BX9RRN0X1E');
+      gtag('config', 'G-2P26DE6DZ9');
     </script>
   </head>
   <body>
