@@ -35,9 +35,13 @@ function showResults(type, incrementStreak) {
   document.getElementById("stopwatch").style.display = "none";
 
   if (previousResults) {
-    document
-      .getElementById("results")
-      .append(previousResults + " in " + previousTime + " seconds");
+    if (previousStreak > 0) {
+      document
+        .getElementById("results")
+        .append(previousResults + " in " + previousTime + " seconds");
+    } else {
+      document.getElementById("results").append("I died. " + previousResults);
+    }
     document.getElementsByTagName("button")[0].style.display = "inline-block";
     document.getElementById("link").style.display = "block";
   } else {
@@ -60,9 +64,13 @@ function showResults(type, incrementStreak) {
       timeLimit - document.getElementById("stopwatch").innerHTML
     ).toFixed(2);
 
-    document
-      .getElementById("results")
-      .append(results + " in " + time + " seconds");
+    if (type === "win") {
+      document
+        .getElementById("results")
+        .append(results + " in " + time + " seconds");
+    } else {
+      document.getElementById("results").append("I died. " + results);
+    }
     document.getElementById("link").style.display = "block";
     document.getElementsByTagName("button")[0].style.display = "inline-block";
 
