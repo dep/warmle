@@ -25,15 +25,18 @@ button {
 }
 #instructionsLink {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #000;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
+  font-size: 20px;
 }
 #instructions {
   padding: 20px;
   background: #555;
   padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #game {
   padding-top: 20%;

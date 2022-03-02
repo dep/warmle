@@ -14,6 +14,7 @@ let previousWin = window.localStorage.getItem("win" + todaysDate);
 let previousResults = window.localStorage.getItem("results" + todaysDate);
 let previousTime = window.localStorage.getItem("time" + todaysDate);
 let previousStreak = parseInt(window.localStorage.getItem("streak"));
+let shareMessage;
 
 if (previousWin) {
   showResults(previousWin, false);
@@ -27,8 +28,15 @@ document.getElementById("instructionsLink").onclick = () => {
   document.getElementById("input0").focus();
 };
 
+document.getElementById("instructions").onclick = () => {
+  document.getElementById("instructions").style.display = "none";
+  document.getElementById("input0").focus();
+};
+
 document.getElementById("resultsButton").addEventListener("click", () => {
   navigator.clipboard.writeText(document.getElementById("results").innerText);
+  document.getElementById("resultsButton").innerHTML =
+    "Copied to your clipboard!";
 });
 
 function showResults(type, incrementStreak) {

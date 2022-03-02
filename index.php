@@ -18,8 +18,9 @@
         <p>When you guess the correct letter, you gain 5 seconds and the tile turns green and you are taken to the next letter.</p>
         <p>When you guess the wrong letter, you lose 1 second and must guess again. The "darkness" of the tile shows you how close you are alphabetically to the correct letter ("A" is very close to "B", so a very dark red, whereas "A" is very far from "Z", etc).</p>
         <p>You have 30 seconds to guess the word. Good luck!</p>
+        <p>Tap this message to close.</p>
       </div>
-      <span id="instructionsLink">how to play</span>
+      <span id="instructionsLink">&#10068; how to play</span>
       <div id="game"></div>
       <h1 id="msg"></h1><br />
       <div id="results">
@@ -29,7 +30,7 @@
         </span>
       </div>
       <br/>
-      <button style="display: none" id="resultsButton">Copy and share your results!</button><br /><br/>
+      <button style="display: none" id="resultsButton">Copy your results and share them!</button><br /><br/>
       <div id="copyright">
         a <a href="https://dannypeck.com">dannypeck</a> project
       </div>
