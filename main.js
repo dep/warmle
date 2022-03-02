@@ -213,7 +213,7 @@ function keyDownAction(event) {
     el.style.color = "white";
     if (nextInput) {
       nextInput.focus();
-      timeLimit = timeLimit + 5;
+      timeLimit = timeLimit + 10;
     } else {
       el.blur();
       clearInterval(timer);
@@ -224,7 +224,9 @@ function keyDownAction(event) {
     distance = distanceBetween(value, el.dataset.letter.toLowerCase());
     el.style.backgroundColor = colors[distance];
 
-    timeLimit = timeLimit - 1;
+    if (el.previousElementSibling) {
+      timeLimit = timeLimit - 1;
+    }
 
     el.value = "";
     value = "";

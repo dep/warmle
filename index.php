@@ -24,7 +24,7 @@
       <div id="instructions" style="display: none">
         <p>Each day provides a new word that you must guess starting with the first letter.</p>
         <p>When you guess a letter, the counter begins.</p>
-        <p>When you guess the correct letter, you gain 5 seconds and the tile turns green and you are taken to the next letter.</p>
+        <p>When you guess the correct letter, you gain 10 seconds and the tile turns green and you are taken to the next letter.</p>
         <p>When you guess the wrong letter, you lose 1 second and must guess again. The "darkness" of the tile shows you how close you are alphabetically to the correct letter ("A" is very close to "B", so a very dark red, whereas "A" is very far from "Z", etc).</p>
         <p>You have 30 seconds to guess the word. Good luck!</p>
         <p>Tap this message to close.</p>
