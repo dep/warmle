@@ -188,6 +188,14 @@ const distanceBetween = (a, b) => {
   }
   return Math.abs(aIndex - bIndex);
 };
+const highOrLow = (a, b) => {
+  const aIndex = str.indexOf(a);
+  const bIndex = str.indexOf(b);
+  if (aIndex === -1 || b === -1) {
+    return false;
+  }
+  return aIndex > bIndex ? "too high" : "too low";
+};
 
 const Keyboard = window.SimpleKeyboard.default;
 
@@ -206,7 +214,21 @@ function keyDownAction(event) {
     Timer();
   }
 
-  var nextInput = el.nextElementSibling;
+  var nextInput = el.parentElement.nextSibling
+    ? el.parentElement.nextSibling.getElementsByTagName("input")[0]
+    : null;
+
+  distance = distanceBetween(value, el.dataset.letter.toLowerCase());
+  direction = highOrLow(value, el.dataset.letter.toLowerCase());
+  const hint = document.createElement("span");
+  if (el.parentNode.getElementsByTagName("span").length) {
+    el.parentNode.getElementsByTagName("span")[0].remove();
+  }
+  hint.className = "hint";
+  hint.innerHTML =
+    // distance > 0 ? `${direction} (off by ${distance})` : "got it!";
+    distance > 0 ? `${direction}` : "got it!";
+  el.insertAdjacentElement("afterend", hint);
 
   if (value == el.dataset.letter.toLowerCase()) {
     el.style.backgroundColor = "#32CD32";
@@ -221,7 +243,6 @@ function keyDownAction(event) {
       showResults("win", true);
     }
   } else {
-    distance = distanceBetween(value, el.dataset.letter.toLowerCase());
     el.style.backgroundColor = colors[distance];
 
     if (el.previousElementSibling) {
@@ -284,6 +305,7 @@ function getMobileOperatingSystem() {
 if (!previousResults) {
   for (var i = 0; i < word.length; i++) {
     const newInput = document.createElement("input");
+    const newDiv = document.createElement("div");
     newInput.type = "text";
     newInput.dataset.letter = word.charAt(i);
     newInput.maxLength = 1;
@@ -296,7 +318,8 @@ if (!previousResults) {
     ) {
       newInput.readOnly = true;
     }
-    document.getElementById("game").appendChild(newInput);
+    newDiv.appendChild(newInput);
+    document.getElementById("game").appendChild(newDiv);
   }
 
   document.querySelectorAll(".input").forEach((input) => {

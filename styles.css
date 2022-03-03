@@ -44,14 +44,22 @@ button {
   margin: 0 auto;
   max-width: 900px;
 }
-#game input {
+#game div {
   flex-grow: 1;
   flex-basis: 0;
   min-width: 0;
+  margin: 2px;
+  display: inline;
+}
+#game .hint {
+  font-size: 16px;
+  color: #aaa;
+  position: relative;
+  top: 10px;
 }
 input[type="text"] {
-  margin: 2px;
   height: 120px;
+  width: 100%;
   text-align: center;
   font-size: 50px;
   text-transform: uppercase;
