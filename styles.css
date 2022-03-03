@@ -59,6 +59,9 @@ input[type="text"] {
   outline: none;
   transition: background 0.5s;
 }
+input[type="text"]::selection {
+  background: none;
+}
 #results {
   display: block;
   background: #333;

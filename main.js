@@ -228,8 +228,7 @@ function keyDownAction(event) {
       timeLimit = timeLimit - 1;
     }
 
-    el.value = "";
-    value = "";
+    el.select();
     keyboard.clearInput(event.target.id);
 
     if (distance > 8) {
