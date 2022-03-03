@@ -246,7 +246,7 @@ function keyDownAction(event) {
     el.style.backgroundColor = colors[distance];
 
     if (el.previousElementSibling) {
-      // timeLimit = timeLimit - 1;
+      timeLimit = timeLimit - 2;
     }
 
     el.select();
