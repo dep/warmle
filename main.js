@@ -194,7 +194,7 @@ const highOrLow = (a, b) => {
   if (aIndex === -1 || b === -1) {
     return false;
   }
-  return aIndex > bIndex ? "too high" : "too low";
+  return aIndex > bIndex ? "&#128317" : "&#128316";
 };
 
 const Keyboard = window.SimpleKeyboard.default;
@@ -227,7 +227,7 @@ function keyDownAction(event) {
   hint.className = "hint";
   hint.innerHTML =
     // distance > 0 ? `${direction} (off by ${distance})` : "got it!";
-    distance > 0 ? `${direction}` : "got it!";
+    distance > 0 ? `${direction}` : String.fromCodePoint(0x1f389);
   el.insertAdjacentElement("afterend", hint);
 
   if (value == el.dataset.letter.toLowerCase()) {
