@@ -235,7 +235,7 @@ function keyDownAction(event) {
     el.style.color = "white";
     if (nextInput) {
       nextInput.focus();
-      timeLimit = timeLimit + 10;
+      // timeLimit = timeLimit + 10;
     } else {
       el.blur();
       clearInterval(timer);
@@ -246,7 +246,7 @@ function keyDownAction(event) {
     el.style.backgroundColor = colors[distance];
 
     if (el.previousElementSibling) {
-      timeLimit = timeLimit - 1;
+      // timeLimit = timeLimit - 1;
     }
 
     el.select();
