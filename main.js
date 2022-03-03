@@ -10,9 +10,9 @@ window.localStorage.removeItem("win");
 window.localStorage.removeItem("results");
 window.localStorage.removeItem("time");
 
-let previousWin = window.localStorage.getItem("win" + todaysDate);
-let previousResults = window.localStorage.getItem("results" + todaysDate);
-let previousTime = window.localStorage.getItem("time" + todaysDate);
+let previousWin = window.localStorage.getItem(todaysDate + "win");
+let previousResults = window.localStorage.getItem(todaysDate + "results");
+let previousTime = window.localStorage.getItem(todaysDate + "time");
 let previousStreak = parseInt(window.localStorage.getItem("streak"));
 let shareMessage;
 
@@ -82,9 +82,9 @@ function showResults(type, incrementStreak) {
     document.getElementById("link").style.display = "block";
     document.getElementsByTagName("button")[0].style.display = "inline-block";
 
-    window.localStorage.setItem("win" + todaysDate, type);
-    window.localStorage.setItem("results" + todaysDate, results);
-    window.localStorage.setItem("time" + todaysDate, time);
+    window.localStorage.setItem(todaysDate + "win", type);
+    window.localStorage.setItem(todaysDate + "results", results);
+    window.localStorage.setItem(todaysDate + "time", time);
   }
 
   document.getElementsByClassName("simple-keyboard")[0].style.display = "none";
