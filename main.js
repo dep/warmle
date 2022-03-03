@@ -113,6 +113,7 @@ function showResults(type, incrementStreak) {
   }
 }
 const stopwatch = document.getElementById("stopwatch");
+
 function Timer() {
   var i = 1;
   timer = setInterval(function () {
@@ -120,51 +121,50 @@ function Timer() {
       timeLimit - parseFloat(i / 20).toFixed(2)
     ).toFixed(2);
     i++;
-    if (i > 100) {
-      stopwatch.style.color = colors[14];
-      stopwatch.style.fontSize = "40px";
-    }
-    if (i > 200) {
-      stopwatch.style.color = colors[13];
+
+    let currentTime = parseFloat(stopwatch.innerHTML);
+
+    if (currentTime < 30) {
+      stopwatch.style.color = "#fff";
       stopwatch.style.fontSize = "45px";
     }
-    if (i > 300) {
+    if (currentTime < 25) {
       stopwatch.style.color = colors[12];
       stopwatch.style.fontSize = "55px";
     }
-    if (i > 400) {
+    if (currentTime < 20) {
       stopwatch.style.color = colors[11];
       stopwatch.style.fontSize = "65px";
     }
-    if (i > 425) {
+    if (currentTime < 15) {
       stopwatch.style.color = colors[10];
       stopwatch.style.fontSize = "80px";
     }
-    if (i > 450) {
+    if (currentTime < 12) {
       stopwatch.style.color = colors[9];
       stopwatch.style.fontSize = "90px";
     }
-    if (i > 475) {
+    if (currentTime < 10) {
       stopwatch.style.color = colors[8];
       stopwatch.style.fontSize = "95px";
     }
-    if (i > 500) {
+    if (currentTime < 9) {
       stopwatch.style.color = colors[7];
       stopwatch.style.fontSize = "100px";
     }
-    if (i > 525) {
+    if (currentTime < 7) {
       stopwatch.style.color = colors[6];
       stopwatch.style.fontSize = "105px";
     }
-    if (i > 550) {
+    if (currentTime < 5) {
       stopwatch.style.color = colors[5];
       stopwatch.style.fontSize = "110px";
     }
-    if (i > 575) {
+    if (currentTime < 3) {
       stopwatch.style.color = colors[4];
       stopwatch.style.fontSize = "115px";
     }
-    if (i > 600 || parseFloat(stopwatch.innerHTML) <= 0) {
+    if (currentTime <= 0) {
       clearInterval(timer);
       showResults();
     }
