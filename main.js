@@ -252,11 +252,11 @@ function keyDownAction(event) {
     el.select();
     keyboard.clearInput(event.target.id);
 
-    if (distance > 8) {
-      el.style.color = "black";
-    } else {
+    // if (distance > 8) {
+    //   el.style.color = "black";
+    // } else {
       el.style.color = "white";
-    }
+    // }
   }
 }
 
