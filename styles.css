@@ -17,6 +17,18 @@ body > div {
 a {
   color: white;
 }
+header {
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+}
+header h1 {
+  margin: 0;
+  font-size: 4rem;
+}
 button {
   margin-top: 20px;
   background: green;
@@ -28,9 +40,6 @@ button {
   font-size: 2rem;
 }
 #instructionsLink {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   cursor: pointer;
   font-size: 2rem;
   z-index: 3;

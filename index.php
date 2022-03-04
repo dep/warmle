@@ -20,6 +20,10 @@
     </script>
   </head>
   <body>
+    <header>
+      <h1>🟥 warmle!</h1>
+      <span id="instructionsLink">&#10068; how to play</span>
+    </header>
     <div>
       <div id="instructions" style="display: none">
         <p>Each day provides a new word that you must guess starting with the first letter.</p>
@@ -30,7 +34,6 @@
         <p>You have 30 seconds to guess the word. Good luck!</p>
         <p>Tap this message to close.</p>
       </div>
-      <span id="instructionsLink">&#10068; how to play</span>
       <div id="game"></div>
       <h1 id="msg"></h1><br />
       <div id="results">
