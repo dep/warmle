@@ -6,19 +6,20 @@ let timer = null;
 let timeLimit = 30;
 let time;
 
-window.localStorage.removeItem("win");
-window.localStorage.removeItem("results");
-window.localStorage.removeItem("time");
-
 let previousWin = window.localStorage.getItem(todaysDate + "win");
 let previousResults = window.localStorage.getItem(todaysDate + "results");
 let previousTime = window.localStorage.getItem(todaysDate + "time");
 let previousStreak = parseInt(window.localStorage.getItem("streak"));
+let hardMode = window.localStorage.getItem("hardMode");
+
 let shareMessage;
 
 if (previousWin) {
   showResults(previousWin, false);
 }
+
+const gameDiv = document.getElementById("game");
+const stopwatch = document.getElementById("stopwatch");
 
 document.getElementById("instructionsLink").onclick = () => {
   document.getElementById("instructions").style.display =
@@ -27,6 +28,30 @@ document.getElementById("instructionsLink").onclick = () => {
       : "none";
   document.getElementById("input0").focus();
 };
+
+// Hard mode
+const hardModeCheckbox = document.getElementById("hardModeCheckbox");
+hardModeCheckbox.onclick = (e) => {
+  if (e.target.checked) {
+    window.localStorage.setItem("hardMode", e.target.checked);
+  } else {
+    window.localStorage.removeItem("hardMode");
+  }
+  hardMode = e.target.checked;
+  gameDiv.getElementsByTagName("input")[0].focus();
+
+  if (hardMode) {
+    stopwatch.innerHTML = timeLimit.toFixed(2);
+  } else {
+    stopwatch.innerHTML = "0.00";
+  }
+};
+hardModeCheckbox.checked = hardMode;
+if (hardMode) {
+  stopwatch.innerHTML = timeLimit.toFixed(2);
+} else {
+  stopwatch.innerHTML = "0.00";
+}
 
 document.getElementById("instructions").onclick = () => {
   document.getElementById("instructions").style.display = "none";
@@ -46,20 +71,26 @@ function showResults(type, incrementStreak) {
     if (previousStreak > 0) {
       document
         .getElementById("results")
-        .append(previousResults + " in " + previousTime + " seconds");
+        .append(
+          "I won! " + previousResults + " in " + previousTime + " seconds"
+        );
+      if (hardMode) {
+        document.getElementById("results").append(" (hard mode)");
+      }
     } else {
-      document.getElementById("results").append("I died. " + previousResults);
+      document.getElementById("results").append("I lost! " + previousResults);
     }
     document.getElementsByTagName("button")[0].style.display = "inline-block";
     document.getElementById("link").style.display = "block";
   } else {
-    var elems = document.getElementsByTagName("input");
+    var elems = gameDiv.getElementsByTagName("input");
     var len = elems.length;
 
     let results = "";
     for (var i = 0; i < len; i++) {
       elems[i].disabled = true;
       if (
+        elems[i].dataset.letter &&
         elems[i].value.toLowerCase() === elems[i].dataset.letter.toLowerCase()
       ) {
         results += String.fromCodePoint(0x1f7e9);
@@ -75,7 +106,10 @@ function showResults(type, incrementStreak) {
     if (type === "win") {
       document
         .getElementById("results")
-        .append(results + " in " + time + " seconds");
+        .append("I won! " + results + " in " + time + " seconds");
+      if (hardMode) {
+        document.getElementById("results").append(" (hard mode)");
+      }
     } else {
       document.getElementById("results").append("I died. " + results);
     }
@@ -104,69 +138,75 @@ function showResults(type, incrementStreak) {
     if (previousStreak > 0) {
       document
         .getElementById("results")
-        .append(` (current streak: ${previousStreak})`);
+        .append(` -- current streak: ${previousStreak}`);
     }
   } else {
     window.localStorage.setItem("streak", 0);
     document.getElementById("msg").innerHTML =
-      "&#128532; You died. The word was '" + word + "'.";
+      "&#128532; You lost. The word was '" + word + "'.";
   }
 }
-const stopwatch = document.getElementById("stopwatch");
 
 function Timer() {
   var i = 1;
   timer = setInterval(function () {
-    stopwatch.innerHTML = parseFloat(
-      timeLimit - parseFloat(i / 20).toFixed(2)
-    ).toFixed(2);
-    i++;
+    if (hardMode) {
+      stopwatch.innerHTML = parseFloat(
+        timeLimit - parseFloat(i / 20).toFixed(2)
+      ).toFixed(2);
+      i++;
 
-    let currentTime = parseFloat(stopwatch.innerHTML);
+      let currentTime = parseFloat(stopwatch.innerHTML);
 
-    if (currentTime < 30) {
-      stopwatch.style.color = "#fff";
-      stopwatch.style.fontSize = "45px";
-    }
-    if (currentTime < 25) {
-      stopwatch.style.color = colors[12];
-      stopwatch.style.fontSize = "55px";
-    }
-    if (currentTime < 20) {
-      stopwatch.style.color = colors[11];
-      stopwatch.style.fontSize = "65px";
-    }
-    if (currentTime < 15) {
-      stopwatch.style.color = colors[10];
-      stopwatch.style.fontSize = "80px";
-    }
-    if (currentTime < 12) {
-      stopwatch.style.color = colors[9];
-      stopwatch.style.fontSize = "90px";
-    }
-    if (currentTime < 10) {
-      stopwatch.style.color = colors[8];
-      stopwatch.style.fontSize = "95px";
-    }
-    if (currentTime < 9) {
-      stopwatch.style.color = colors[7];
-      stopwatch.style.fontSize = "100px";
-    }
-    if (currentTime < 7) {
-      stopwatch.style.color = colors[6];
-      stopwatch.style.fontSize = "105px";
-    }
-    if (currentTime < 5) {
-      stopwatch.style.color = colors[5];
-      stopwatch.style.fontSize = "110px";
-    }
-    if (currentTime < 3) {
-      stopwatch.style.color = colors[4];
-      stopwatch.style.fontSize = "115px";
-    }
-    if (currentTime <= 0) {
-      clearInterval(timer);
-      showResults();
+      if (currentTime < 30) {
+        stopwatch.style.color = "#fff";
+        stopwatch.style.fontSize = "45px";
+      }
+      if (currentTime < 25) {
+        stopwatch.style.color = colors[12];
+        stopwatch.style.fontSize = "55px";
+      }
+      if (currentTime < 20) {
+        stopwatch.style.color = colors[11];
+        stopwatch.style.fontSize = "65px";
+      }
+      if (currentTime < 15) {
+        stopwatch.style.color = colors[10];
+        stopwatch.style.fontSize = "80px";
+      }
+      if (currentTime < 12) {
+        stopwatch.style.color = colors[9];
+        stopwatch.style.fontSize = "90px";
+      }
+      if (currentTime < 10) {
+        stopwatch.style.color = colors[8];
+        stopwatch.style.fontSize = "95px";
+      }
+      if (currentTime < 9) {
+        stopwatch.style.color = colors[7];
+        stopwatch.style.fontSize = "100px";
+      }
+      if (currentTime < 7) {
+        stopwatch.style.color = colors[6];
+        stopwatch.style.fontSize = "105px";
+      }
+      if (currentTime < 5) {
+        stopwatch.style.color = colors[5];
+        stopwatch.style.fontSize = "110px";
+      }
+      if (currentTime < 3) {
+        stopwatch.style.color = colors[4];
+        stopwatch.style.fontSize = "115px";
+      }
+      if (currentTime <= 0) {
+        clearInterval(timer);
+        showResults();
+      }
+    } else {
+      stopwatch.innerHTML = parseFloat(
+        0 + parseFloat(i / 20).toFixed(2)
+      ).toFixed(2);
+      i++;
     }
   }, 50);
 }
@@ -226,7 +266,6 @@ function keyDownAction(event) {
   }
   hint.className = "hint";
   hint.innerHTML =
-    // distance > 0 ? `${direction} (off by ${distance})` : "got it!";
     distance > 0 ? `${direction}` : String.fromCodePoint(0x1f389);
   el.insertAdjacentElement("afterend", hint);
 
@@ -235,7 +274,6 @@ function keyDownAction(event) {
     el.style.color = "white";
     if (nextInput) {
       nextInput.focus();
-      // timeLimit = timeLimit + 10;
     } else {
       el.blur();
       clearInterval(timer);
@@ -251,12 +289,7 @@ function keyDownAction(event) {
 
     el.select();
     keyboard.clearInput(event.target.id);
-
-    // if (distance > 8) {
-    //   el.style.color = "black";
-    // } else {
-      el.style.color = "white";
-    // }
+    el.style.color = "white";
   }
 }
 
@@ -327,9 +360,9 @@ if (!previousResults) {
     input.addEventListener("input", onInputChange);
   });
 
-  document.getElementsByTagName("input")[0].focus();
+  gameDiv.getElementsByTagName("input")[0].focus();
 
-  const inputs = document.getElementsByTagName("input");
+  const inputs = gameDiv.getElementsByTagName("input");
 
   for (var x = 0; x < inputs.length; x++) {
     const input = inputs[x];
@@ -339,8 +372,14 @@ if (!previousResults) {
     });
 
     input.addEventListener("keyup", function (event) {
-      disableTab(event);
-      keyDownAction(event);
+      if (
+        event.target.tagName == "INPUT" &&
+        event.target.value.match(/[A-Za-z]/i)
+      ) {
+        disableTab(event);
+        keyDownAction(event);
+        document.getElementById("hardMode").remove();
+      }
     });
   }
 }

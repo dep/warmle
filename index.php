@@ -22,25 +22,23 @@
   <body>
     <header>
       <h1>🟥 warmle!</h1>
+      <span id="hardMode"><input type="checkbox" id="hardModeCheckbox" /> <label for="hardModeCheckbox">Hard Mode</label>
       <span id="instructionsLink">&#10068; how to play</span>
     </header>
     <div>
       <div id="instructions" style="display: none">
         <p>Each day provides a new word that you must guess starting with the first letter.</p>
-        <p>When you guess a letter, the counter begins.</p>
+        <p>When you guess a letter, the counter begins (<strong>hard mode</strong> gives you only 30 seconds).</p>
         <p>When you guess the correct letter the tile turns green and you are taken to the next letter.</p>
         <p>When you guess the wrong letter you must guess again. The "darkness" of the tile shows you how close you are alphabetically to the correct letter ("A" is very close to "B", so a very dark red, whereas "A" is very far from "Z", etc).</p>
         <p>An "up arrow" after an invalid guess means your guess was too low.</p>
-        <p>You have 30 seconds to guess the word. Good luck!</p>
         <p>Tap this message to close.</p>
       </div>
       <div id="game"></div>
       <h1 id="msg"></h1><br />
       <div id="results">
         <p id="link" style="display: none">Play Warmle at https://warmle-game.com</p>
-        <span id="stopwatch">
-          30.00
-        </span>
+        <span id="stopwatch"></span>
       </div>
       <br/>
       <button style="display: none" id="resultsButton">Copy your results and share them!</button><br /><br/>

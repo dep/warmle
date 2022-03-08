@@ -39,10 +39,12 @@ button {
   cursor: pointer;
   font-size: 2rem;
 }
+#hardMode label,
 #instructionsLink {
   cursor: pointer;
   font-size: 2rem;
   z-index: 3;
+  margin-right: 10px;
 }
 #instructions {
   padding: 20px;
@@ -53,6 +55,9 @@ button {
   left: 0;
   font-size: 3rem;
   z-index: 2;
+}
+#instructions strong {
+  color: yellow;
 }
 #game {
   padding-top: 20%;
