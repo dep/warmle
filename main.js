@@ -99,9 +99,13 @@ function showResults(type, incrementStreak) {
       }
     }
 
-    time = parseFloat(
-      timeLimit - document.getElementById("stopwatch").innerHTML
-    ).toFixed(2);
+    if (hardMode) {
+      time = parseFloat(
+        timeLimit - document.getElementById("stopwatch").innerHTML
+      ).toFixed(2);
+    } else {
+      time = document.getElementById("stopwatch").innerHTML;
+    }
 
     if (type === "win") {
       document
