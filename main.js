@@ -111,7 +111,7 @@ function showResults(type, incrementStreak) {
         document.getElementById("results").append(" (hard mode)");
       }
     } else {
-      document.getElementById("results").append("I died. " + results);
+      document.getElementById("results").append("I lost. " + results);
     }
     document.getElementById("link").style.display = "block";
     document.getElementsByTagName("button")[0].style.display = "inline-block";
