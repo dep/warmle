@@ -22,8 +22,10 @@
   <body>
     <header>
       <h1>🟥 warmle!</h1>
-      <span id="hardMode"><input type="checkbox" id="hardModeCheckbox" /> <label for="hardModeCheckbox">Hard Mode</label>
-      <span id="instructionsLink">&#10068; how to play</span>
+      <div>
+        <span id="hardMode"><input type="checkbox" id="hardModeCheckbox" /> <label for="hardModeCheckbox">Hard Mode</label></span>
+        <span id="instructionsLink">&#10068; how to play</span>
+    </div>
     </header>
     <div>
       <div id="instructions" style="display: none">
