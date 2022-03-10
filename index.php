@@ -35,11 +35,8 @@
         <p>Tap this message to close.</p>
       </div>
       <div id="game"></div>
-      <h1 id="msg"></h1><br />
-      <div id="results">
-        <p id="link" style="display: none">Play Warmle at https://warmle-game.com</p>
-        <span id="stopwatch"></span>
-      </div>
+      <div id="results"></div>
+      <div id="stopwatch"></div>
       <br/>
       <button style="display: none" id="resultsButton">Copy your results and share them!</button><br /><br/>
       <div id="copyright">

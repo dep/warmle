@@ -1,41 +1,43 @@
 const word = words[0];
-
 const todaysDate = new Date().toLocaleDateString("en-US");
 
 let timer = null;
 let timeLimit = 30;
 let time;
+let results;
 
-let previousWin = window.localStorage.getItem(todaysDate + "win");
-let previousResults = window.localStorage.getItem(todaysDate + "results");
-let previousTime = window.localStorage.getItem(todaysDate + "time");
-let previousStreak = parseInt(window.localStorage.getItem("streak"));
-let hardMode = window.localStorage.getItem("hardMode");
+// Local Storage
+const ls = window.localStorage;
+let previousWin = ls.getItem(todaysDate + "win");
+let previousResults = ls.getItem(todaysDate + "results");
+let previousTime = ls.getItem(todaysDate + "time");
+let previousStreak = parseInt(ls.getItem("streak"));
+let hardMode = ls.getItem("hardMode");
 
-let shareMessage;
-
-if (previousWin) {
-  showResults(previousWin, false);
-}
-
+// Elements
 const gameDiv = document.getElementById("game");
 const stopwatch = document.getElementById("stopwatch");
+const shareButton = document.getElementsByTagName("button")[0];
+const instructionsLink = document.getElementById("instructionsLink");
+const instructions = document.getElementById("instructions");
+const firstGameInput = gameDiv.getElementsByTagName("input")[0];
+const hardModeCheckbox = document.getElementById("hardModeCheckbox");
+const resultsButton = document.getElementById("resultsButton");
+const resultsDiv = document.getElementById("results");
+const softKeyboard = document.getElementsByClassName("simple-keyboard")[0];
 
-document.getElementById("instructionsLink").onclick = () => {
-  document.getElementById("instructions").style.display =
-    document.getElementById("instructions").style.display == "none"
-      ? "block"
-      : "none";
-  document.getElementById("input0").focus();
+// Events
+instructionsLink.onclick = () => {
+  instructions.style.display =
+    instructions.style.display == "none" ? "block" : "none";
+  firstGameInput.focus();
 };
 
-// Hard mode
-const hardModeCheckbox = document.getElementById("hardModeCheckbox");
 hardModeCheckbox.onclick = (e) => {
   if (e.target.checked) {
-    window.localStorage.setItem("hardMode", e.target.checked);
+    ls.setItem("hardMode", e.target.checked);
   } else {
-    window.localStorage.removeItem("hardMode");
+    ls.removeItem("hardMode");
   }
   hardMode = e.target.checked;
   gameDiv.getElementsByTagName("input")[0].focus();
@@ -53,40 +55,48 @@ if (hardMode) {
   stopwatch.innerHTML = "0.00";
 }
 
-document.getElementById("instructions").onclick = () => {
-  document.getElementById("instructions").style.display = "none";
-  document.getElementById("input0").focus();
+instructions.onclick = () => {
+  instructions.style.display = "none";
+  firstGameInput.focus();
 };
 
-document.getElementById("resultsButton").addEventListener("click", () => {
-  navigator.clipboard.writeText(document.getElementById("results").innerText);
-  document.getElementById("resultsButton").innerHTML =
-    "Copied to your clipboard!";
+resultsButton.addEventListener("click", () => {
+  navigator.clipboard.writeText(resultsDiv.innerText);
+  resultsButton.innerHTML = "Copied to your clipboard!";
 });
 
+function getResultMessage(winner, time) {
+  resultsDiv.style.display = "block";
+  if (winner) {
+    resultsDiv.innerHTML = `After ${time} seconds I got today's word! &#128516; `;
+    if (hardMode) {
+      resultsDiv.append(" hard mode: ");
+    }
+    resultsDiv.append(results);
+    resultsDiv.append(` (current streak: ${previousStreak})`);
+  } else {
+    resultsDiv.innerHTML = `I tried hard mode and lost. &#128532 ${results}`;
+  }
+  resultsDiv.appendChild(document.createElement("br"));
+  resultsDiv.appendChild(document.createElement("br"));
+  resultsDiv.append("Play Warmle at https://warmle-game.com");
+}
+
 function showResults(type, incrementStreak) {
-  document.getElementById("stopwatch").style.display = "none";
+  stopwatch.style.display = "none";
 
   if (previousResults) {
-    if (previousStreak > 0) {
-      document
-        .getElementById("results")
-        .append(
-          "I won! " + previousResults + " in " + previousTime + " seconds"
-        );
-      if (hardMode) {
-        document.getElementById("results").append(" (hard mode)");
-      }
-    } else {
-      document.getElementById("results").append("I lost! " + previousResults);
-    }
-    document.getElementsByTagName("button")[0].style.display = "inline-block";
-    document.getElementById("link").style.display = "block";
+    // Returning user
+    results = previousResults;
+    time = previousTime;
+    getResultMessage(Boolean(previousStreak > 0), time);
+    shareButton.style.display = "inline-block";
   } else {
+    // New user
     var elems = gameDiv.getElementsByTagName("input");
     var len = elems.length;
 
-    let results = "";
+    results = "";
     for (var i = 0; i < len; i++) {
       elems[i].disabled = true;
       if (
@@ -99,56 +109,35 @@ function showResults(type, incrementStreak) {
       }
     }
 
-    if (hardMode) {
-      time = parseFloat(
-        timeLimit - document.getElementById("stopwatch").innerHTML
-      ).toFixed(2);
-    } else {
-      time = document.getElementById("stopwatch").innerHTML;
-    }
+    time = hardMode
+      ? parseFloat(timeLimit - stopwatch.innerHTML).toFixed(2)
+      : stopwatch.innerHTML;
 
     if (type === "win") {
-      document
-        .getElementById("results")
-        .append("I won! " + results + " in " + time + " seconds");
-      if (hardMode) {
-        document.getElementById("results").append(" (hard mode)");
-      }
-    } else {
-      document.getElementById("results").append("I tried Hard Mode and lost. " + results);
-    }
-    document.getElementById("link").style.display = "block";
-    document.getElementsByTagName("button")[0].style.display = "inline-block";
-
-    window.localStorage.setItem(todaysDate + "win", type);
-    window.localStorage.setItem(todaysDate + "results", results);
-    window.localStorage.setItem(todaysDate + "time", time);
-  }
-
-  document.getElementsByClassName("simple-keyboard")[0].style.display = "none";
-
-  if (type === "win") {
-    if (incrementStreak) {
       if (previousStreak) {
         previousStreak++;
       } else {
         previousStreak = 1;
       }
+      ls.setItem("streak", previousStreak);
+    } else {
+      ls.setItem("streak", 0);
     }
 
-    window.localStorage.setItem("streak", previousStreak);
-    document.getElementById("msg").innerHTML = `&#128516; You Won!`;
+    getResultMessage(type, time);
 
-    if (previousStreak > 0) {
-      document
-        .getElementById("results")
-        .append(` -- current streak: ${previousStreak}`);
-    }
-  } else {
-    window.localStorage.setItem("streak", 0);
-    document.getElementById("msg").innerHTML =
-      "&#128532; You lost. The word was '" + word + "'.";
+    shareButton.style.display = "inline-block";
+
+    ls.setItem(todaysDate + "win", type);
+    ls.setItem(todaysDate + "results", results);
+    ls.setItem(todaysDate + "time", time);
   }
+
+  softKeyboard.style.display = "none";
+}
+
+if (previousResults) {
+  showResults(Boolean(previousStreak > 0));
 }
 
 function Timer() {

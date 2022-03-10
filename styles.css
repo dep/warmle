@@ -62,7 +62,7 @@ button {
 #game {
   padding-top: 20%;
   display: flex;
-  margin: 0 auto;
+  margin: 0 auto 50px auto;
   max-width: 900px;
 }
 #game div {
@@ -87,6 +87,7 @@ input[type="text"] {
   border: 0;
   outline: none;
   transition: background 0.5s;
+  border-radius: 2px;
 }
 input[type="text"]::selection {
   background: none;
@@ -94,18 +95,23 @@ input[type="text"]::selection {
 #msg {
   font-size: 5rem;
 }
+#stopwatch,
 #results {
   display: block;
-  background: #333;
   padding: 20px;
   font-size: 3rem;
+  transition: all 2s ease;
 }
-#results p {
-  margin: 0 0 10px;
+#results {
+  font-size: 2rem;
+  display: none;
+  border: 2px dashed #444;
+  margin: 0 20%;
+  background: #111;
+  border-radius: 10px;
 }
 #stopwatch {
-  font-size: 30px;
-  transition: all ease 1.5s;
+  background: #333;
 }
 #copyright {
   font-size: 1rem;
