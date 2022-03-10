@@ -17,12 +17,13 @@ let hardMode = ls.getItem("hardMode");
 // Elements
 const gameDiv = document.getElementById("game");
 const stopwatch = document.getElementById("stopwatch");
-const shareButton = document.getElementsByTagName("button")[0];
 const instructionsLink = document.getElementById("instructionsLink");
 const instructions = document.getElementById("instructions");
 const firstGameInput = gameDiv.getElementsByTagName("input")[0];
 const hardModeCheckbox = document.getElementById("hardModeCheckbox");
-const resultsButton = document.getElementById("resultsButton");
+const shareButtons = document.getElementById("shareButtons");
+const shareButton = document.getElementById("shareButton");
+const twitterButton = document.getElementById("twitterButton");
 const resultsDiv = document.getElementById("results");
 const softKeyboard = document.getElementsByClassName("simple-keyboard")[0];
 
@@ -60,26 +61,36 @@ instructions.onclick = () => {
   firstGameInput.focus();
 };
 
-resultsButton.addEventListener("click", () => {
+console.log(shareButton);
+
+shareButton.addEventListener("click", () => {
   navigator.clipboard.writeText(resultsDiv.innerText);
-  resultsButton.innerHTML = "Copied to your clipboard!";
+  shareButton.innerHTML = "Copied to your clipboard!";
 });
 
 function getResultMessage(winner, time) {
+  let resultsMessage = "";
   resultsDiv.style.display = "block";
   if (winner) {
-    resultsDiv.innerHTML = `After ${time} seconds I got today's word! &#128516; `;
+    resultsMessage = `After ${time} seconds I got today's word! 😀 `;
     if (hardMode) {
-      resultsDiv.append(" hard mode: ");
+      resultsMessage += " hard mode: ";
     }
-    resultsDiv.append(results);
-    resultsDiv.append(` (current streak: ${previousStreak})`);
+    resultsMessage += results;
+    resultsMessage += ` (current streak: ${previousStreak})`;
   } else {
-    resultsDiv.innerHTML = `I tried hard mode and lost. &#128532 ${results}`;
+    resultsMessage = `I tried hard mode and lost. 😭 ${results}`;
   }
-  resultsDiv.appendChild(document.createElement("br"));
-  resultsDiv.appendChild(document.createElement("br"));
-  resultsDiv.append("Play Warmle at https://warmle-game.com");
+  resultsMessage += "<br /><br />";
+
+  resultsMessage += "Play Warmle at https://warmle-game.com";
+  resultsDiv.innerHTML = resultsMessage;
+  twitterButton.setAttribute(
+    "href",
+    `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      resultsMessage.replace("<br /><br />", " ")
+    )}`
+  );
 }
 
 function showResults(type, incrementStreak) {
@@ -90,7 +101,7 @@ function showResults(type, incrementStreak) {
     results = previousResults;
     time = previousTime;
     getResultMessage(Boolean(previousStreak > 0), time);
-    shareButton.style.display = "inline-block";
+    shareButtons.style.display = "block";
   } else {
     // New user
     var elems = gameDiv.getElementsByTagName("input");
@@ -126,7 +137,7 @@ function showResults(type, incrementStreak) {
 
     getResultMessage(type, time);
 
-    shareButton.style.display = "inline-block";
+    shareButtons.style.display = "block";
 
     ls.setItem(todaysDate + "win", type);
     ls.setItem(todaysDate + "results", results);
@@ -144,9 +155,9 @@ function Timer() {
   var i = 1;
   timer = setInterval(function () {
     if (hardMode) {
-      stopwatch.innerHTML = parseFloat(
-        timeLimit - parseFloat(i / 20).toFixed(2)
-      ).toFixed(2);
+      stopwatch.innerHTML = parseFloat(timeLimit - parseFloat(i / 100)).toFixed(
+        2
+      );
       i++;
 
       let currentTime = parseFloat(stopwatch.innerHTML);
@@ -196,12 +207,10 @@ function Timer() {
         showResults();
       }
     } else {
-      stopwatch.innerHTML = parseFloat(
-        0 + parseFloat(i / 20).toFixed(2)
-      ).toFixed(2);
+      stopwatch.innerHTML = parseFloat(0 + parseFloat(i / 100)).toFixed(2);
       i++;
     }
-  }, 50);
+  }, 10);
 }
 
 const disableTab = (event) => {
@@ -371,7 +380,9 @@ if (!previousResults) {
       ) {
         disableTab(event);
         keyDownAction(event);
-        document.getElementById("hardMode").remove();
+        if (document.getElementById("hardMode")) {
+          document.getElementById("hardMode").remove();
+        }
       }
     });
   }

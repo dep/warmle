@@ -38,7 +38,11 @@
       <div id="results"></div>
       <div id="stopwatch"></div>
       <br/>
-      <button style="display: none" id="resultsButton">Copy your results and share them!</button><br /><br/>
+      <div id="shareButtons" style="display: none">
+        <button id="shareButton">Copy your results and share them!</button>
+        <br/>
+        <a id="twitterButton" data-size="large">Tweet your results</a>
+      </div>
       <div id="copyright">
         a <a href="https://dannypeck.com">dannypeck</a> project
       </div>

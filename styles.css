@@ -33,11 +33,23 @@ button {
   margin-top: 20px;
   background: green;
   color: white;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
   border: 0;
   cursor: pointer;
   font-size: 2rem;
+}
+#twitterButton {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-radius: 20px;
 }
 #hardMode label,
 #instructionsLink {
