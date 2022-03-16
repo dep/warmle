@@ -122,6 +122,16 @@ input[type="text"]::selection {
   background: #111;
   border-radius: 10px;
 }
+#answer {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 500px;
+}
+#answer strong {
+  color: yellow;
+}
 #stopwatch {
   background: #333;
 }

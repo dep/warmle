@@ -25,6 +25,7 @@ const shareButtons = document.getElementById("shareButtons");
 const shareButton = document.getElementById("shareButton");
 const twitterButton = document.getElementById("twitterButton");
 const resultsDiv = document.getElementById("results");
+const answerDiv = document.getElementById("answer");
 const softKeyboard = document.getElementsByClassName("simple-keyboard")[0];
 
 // Events
@@ -80,6 +81,7 @@ function getResultMessage(winner, time) {
     resultsMessage += ` (current streak: ${previousStreak})`;
   } else {
     resultsMessage = `I tried hard mode and lost. 😭 ${results}`;
+    answerDiv.innerHTML = `The word was <strong>${word}</strong>. 🙁`;
   }
   resultsMessage += "<br /><br />";
 

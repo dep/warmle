@@ -37,6 +37,7 @@
         <p>Tap this message to close.</p>
       </div>
       <div id="game"></div>
+      <div id="answer"></div>
       <div id="results"></div>
       <div id="stopwatch"></div>
       <br/>
