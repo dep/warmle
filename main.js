@@ -75,7 +75,7 @@ function getResultMessage(winner, time) {
   let resultsMessage = "";
   resultsDiv.style.display = "block";
   if (winner) {
-    resultsMessage = `After ${time} seconds and ${guesses} guesses I got today's word! 😀 `;
+    resultsMessage = `After ${time} seconds and ${guesses - word.length} wrong guesses I got today's word! 😀 `;
     if (hardMode) {
       resultsMessage += " hard mode: ";
     }
