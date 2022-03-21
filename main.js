@@ -3,6 +3,7 @@ const todaysDate = new Date().toLocaleDateString("en-US");
 
 let timer = null;
 let timeLimit = 30;
+let guesses = 0;
 let time;
 let results;
 
@@ -11,6 +12,7 @@ const ls = window.localStorage;
 let previousWin = ls.getItem(todaysDate + "win");
 let previousResults = ls.getItem(todaysDate + "results");
 let previousTime = ls.getItem(todaysDate + "time");
+let previousGuesses = ls.getItem(todaysDate + "guesses");
 let previousStreak = parseInt(ls.getItem("streak"));
 let hardMode = ls.getItem("hardMode");
 
@@ -73,14 +75,14 @@ function getResultMessage(winner, time) {
   let resultsMessage = "";
   resultsDiv.style.display = "block";
   if (winner) {
-    resultsMessage = `After ${time} seconds I got today's word! 😀 `;
+    resultsMessage = `After ${time} seconds and ${guesses} guesses I got today's word! 😀 `;
     if (hardMode) {
       resultsMessage += " hard mode: ";
     }
     resultsMessage += results;
     resultsMessage += ` (current streak: ${previousStreak})`;
   } else {
-    resultsMessage = `I tried hard mode and lost. 😭 ${results}`;
+    resultsMessage = `I tried hard mode and lost after ${guesses} guesses. 😭 ${results}`;
     answerDiv.innerHTML = `The word was <strong>${word}</strong>. 🙁`;
   }
   resultsMessage += "<br /><br />";
@@ -102,6 +104,7 @@ function showResults(type, incrementStreak) {
     // Returning user
     results = previousResults;
     time = previousTime;
+    guesses = previousGuesses;
     getResultMessage(Boolean(previousStreak > 0), time);
     shareButtons.style.display = "block";
   } else {
@@ -144,6 +147,7 @@ function showResults(type, incrementStreak) {
     ls.setItem(todaysDate + "win", type);
     ls.setItem(todaysDate + "results", results);
     ls.setItem(todaysDate + "time", time);
+    ls.setItem(todaysDate + "guesses", guesses);
   }
 
   softKeyboard.style.display = "none";
@@ -257,6 +261,8 @@ function keyDownAction(event) {
   if (!timer && value.match(/[a-z]/i)) {
     Timer();
   }
+
+  guesses = guesses + 1;
 
   var nextInput = el.parentElement.nextSibling
     ? el.parentElement.nextSibling.getElementsByTagName("input")[0]
