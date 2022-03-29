@@ -74,13 +74,40 @@ shareButton.addEventListener("click", () => {
 function getResultMessage(winner, time) {
   let resultsMessage = "";
   resultsDiv.style.display = "block";
+
+  const score = (guesses) => {
+    return guesses < 10
+      ? "an A"
+      : guesses < 15
+      ? "a B"
+      : guesses < 25
+      ? "a C"
+      : guesses < 30
+      ? "a D"
+      : "an F";
+  };
+
+  const scoreEmoji = (guesses) => {
+    return guesses < 10
+      ? "😁"
+      : guesses < 15
+      ? "😀"
+      : guesses < 25
+      ? "😅"
+      : guesses < 30
+      ? "😬"
+      : "😑";
+  };
+
   if (winner) {
-    resultsMessage = `After ${time} seconds and ${guesses - word.length} wrong guesses I got today's word! 😀 `;
+    resultsMessage = `I got ${score(guesses)} score! ${scoreEmoji(
+      guesses
+    )} It took me ${time} seconds and ${guesses - word.length} guesses. `;
     if (hardMode) {
       resultsMessage += " hard mode: ";
     }
     resultsMessage += results;
-    resultsMessage += ` (current streak: ${previousStreak})`;
+    resultsMessage += ` (streak: ${previousStreak})`;
   } else {
     resultsMessage = `I tried hard mode and lost after ${guesses} guesses. 😭 ${results}`;
     answerDiv.innerHTML = `The word was <strong>${word}</strong>. 🙁`;
