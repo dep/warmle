@@ -76,25 +76,25 @@ function getResultMessage(winner, time) {
   resultsDiv.style.display = "block";
 
   const score = (guesses) => {
-    return guesses < 10
+    return guesses < 20
       ? "an A"
-      : guesses < 15
-      ? "a B"
-      : guesses < 25
-      ? "a C"
       : guesses < 30
+      ? "a B"
+      : guesses < 40
+      ? "a C"
+      : guesses < 50
       ? "a D"
       : "an F";
   };
 
   const scoreEmoji = (guesses) => {
-    return guesses < 10
+    return guesses < 20
       ? "😁"
-      : guesses < 15
-      ? "😀"
-      : guesses < 25
-      ? "😅"
       : guesses < 30
+      ? "😀"
+      : guesses < 40
+      ? "😅"
+      : guesses < 50
       ? "😬"
       : "😑";
   };
