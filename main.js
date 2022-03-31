@@ -76,13 +76,13 @@ function getResultMessage(winner, time) {
   resultsDiv.style.display = "block";
 
   const score = (guesses) => {
-    return guesses < 20
+    return guesses < 15 && time < 20
       ? "an A"
-      : guesses < 30
+      : guesses < 25 && time < 25
       ? "a B"
-      : guesses < 40
+      : guesses < 35 && time < 30
       ? "a C"
-      : guesses < 50
+      : guesses < 45 && time < 45
       ? "a D"
       : "an F";
   };
