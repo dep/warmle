@@ -104,7 +104,7 @@ function getResultMessage(winner, time) {
   if (winner) {
     resultsMessage = `I got ${score(guesses)} score! ${scoreEmoji(
       guesses
-    )} It took me ${time} seconds and ${guesses - word.length} guesses. `;
+    )} It took me ${time} seconds and ${guesses - word.length} wrong guesses. `;
     if (hardMode) {
       resultsMessage += " hard mode: ";
     }
