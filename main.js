@@ -79,7 +79,7 @@ function getResultMessage(winner, time) {
     const calcedGuesses = guesses - word.length;
     return calcedGuesses < 15 && time < 20
       ? "an A"
-      : calcedGuesses < 25 && time < 25
+      : calcedGuesses < 25 && time < 35
       ? "a B"
       : calcedGuesses < 35 && time < 45
       ? "a C"
@@ -92,7 +92,7 @@ function getResultMessage(winner, time) {
     const calcedGuesses = guesses - word.length;
     return calcedGuesses < 15 && time < 20
       ? "😁"
-      : calcedGuesses < 25 && time < 25
+      : calcedGuesses < 25 && time < 35
       ? "😀"
       : calcedGuesses < 35 && time < 45
       ? "😅"
