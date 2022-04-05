@@ -90,13 +90,13 @@ function getResultMessage(winner, time) {
 
   const scoreEmoji = (guesses) => {
     const calcedGuesses = guesses - word.length;
-    return calcedGuesses < 20
+    return calcedGuesses < 15 && time < 20
       ? "😁"
-      : calcedGuesses < 30
+      : calcedGuesses < 25 && time < 25
       ? "😀"
-      : calcedGuesses < 40
+      : calcedGuesses < 35 && time < 45
       ? "😅"
-      : calcedGuesses < 50
+      : calcedGuesses < 45 && time < 60
       ? "😬"
       : "😑";
   };
