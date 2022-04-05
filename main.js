@@ -81,9 +81,9 @@ function getResultMessage(winner, time) {
       ? "an A"
       : calcedGuesses < 25 && time < 25
       ? "a B"
-      : calcedGuesses < 35 && time < 30
+      : calcedGuesses < 35 && time < 45
       ? "a C"
-      : calcedGuesses < 45 && time < 45
+      : calcedGuesses < 45 && time < 60
       ? "a D"
       : "an F";
   };
