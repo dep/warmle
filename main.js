@@ -77,14 +77,30 @@ function getResultMessage(winner, time) {
 
   const score = (guesses) => {
     const calcedGuesses = guesses - word.length;
-    return calcedGuesses < 15 && time < 20
+    return calcedGuesses < 10 && time < 15
+      ? "an A+"
+      : calcedGuesses < 15 && time < 20
       ? "an A"
+      : calcedGuesses < 20 && time < 25
+      ? "an A-"
+      : calcedGuesses < 20 && time < 30
+      ? "a B+"
       : calcedGuesses < 25 && time < 35
       ? "a B"
+      : calcedGuesses < 30 && time < 35
+      ? "a B-"
+      : calcedGuesses < 35 && time < 40
+      ? "a C+"
       : calcedGuesses < 35 && time < 45
       ? "a C"
+      : calcedGuesses < 40 && time < 45
+      ? "a C-"
+      : calcedGuesses < 40 && time < 55
+      ? "a D+"
       : calcedGuesses < 45 && time < 60
       ? "a D"
+      : calcedGuesses < 50 && time < 60
+      ? "a D-"
       : "an F";
   };
 
