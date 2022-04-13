@@ -1,5 +1,22 @@
 const word = words[0];
+
+// Get # of days game has been active.
+var gameCreateDate = "02/27/2022";
 const todaysDate = new Date().toLocaleDateString("en-US");
+
+function parseDate(str) {
+  var mdy = str.split("/");
+  return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+}
+
+function datediff(first, second) {
+  return Math.round((second - first) / (1000 * 60 * 60 * 24));
+}
+
+const todaysGameCount = datediff(
+  parseDate(gameCreateDate),
+  parseDate(todaysDate)
+);
 
 let timer = null;
 let timeLimit = 30;
@@ -118,7 +135,9 @@ function getResultMessage(winner, time) {
   };
 
   if (winner) {
-    resultsMessage = `I got ${score(guesses)} score`;
+    resultsMessage = `Warmle #${todaysGameCount}`;
+    resultsMessage += "<br /><br />";
+    resultsMessage += `I got ${score(guesses)} score`;
     if (hardMode) {
       resultsMessage += " in hard mode";
     }
