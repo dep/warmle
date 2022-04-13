@@ -143,7 +143,8 @@ function getResultMessage(winner, time) {
     }
     resultsMessage += `! ${scoreEmoji(
       guesses
-    )} It took me ${time} seconds and ${guesses - word.length} wrong guesses. `;
+    )} It took me ${time} seconds and ${guesses - word.length} wrong guesses.`;
+    resultsMessage += "<br />";
     resultsMessage += results;
     resultsMessage += ` (streak: ${previousStreak})`;
   } else {
